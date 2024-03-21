@@ -6,11 +6,11 @@
 	else (select  max(objectid) from [Database].[Schema].[FeatureClass])+row_number() over(order by unit) end as ObjectID,
 	--- Calculates the shape blob based on in the x, y, and WKID
 	--- syntax is geometry::Point(X,Y,WKID)
-	geometry::Point(cast X,Y,4326) as shape,
+	geometry::Point(X,Y,4326) as shape,
 	null as GDB_GEOMATTR_DATA,
 	unit,
 	Y as Latitude, 
-	X as Longitude, 
+	X as Longitude
 	from [Database].[Schema].[GPS_Table]
 	where unit not in (select unit from [Database].[Schema].[FeatureClass])
 
